@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸运抽奖系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-gift"></i> Lucky Draw
+            </div>
+            <h1>幸运抽奖系统</h1>
+            <div class="subtitle">创建你自己的抽奖活动，让幸运降临！</div>
+        </header>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="settings">设置</div>
+            <div class="tab" data-tab="draw">抽奖</div>
+            <div class="tab" data-tab="history">历史记录</div>
+        </div>
+
+        <div class="tab-content active" id="settings">
+            <div class="settings-section">
+                <h2><i class="fas fa-cog"></i> 活动设置</h2>
+                <div class="form-group">
+                    <label for="eventName">活动名称</label>
+                    <input type="text" id="eventName" placeholder="例如：年会抽奖">
+                </div>
+                <div class="form-group">
+                    <label for="eventDescription">活动描述</label>
+                    <textarea id="eventDescription" placeholder="描述一下您的抽奖活动..."></textarea>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-trophy"></i> 奖项设置</h2>
+                <div class="form-group">
+                    <label for="prizeTitle">奖项名称</label>
+                    <input type="text" id="prizeTitle" placeholder="例如：一等奖">
+                </div>
+                <div class="form-group">
+                    <label for="prizeDescription">奖品描述</label>
+                    <input type="text" id="prizeDescription" placeholder="例如：iPhone 14 Pro">
+                </div>
+                <div class="form-group">
+                    <label for="winnerCount">获奖人数</label>
+                    <input type="number" id="winnerCount" min="1" value="1">
+                </div>
+                <button class="btn" id="addPrize">添加奖项</button>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-users"></i> 参与者设置</h2>
+                <div class="form-group">
+                    <label for="participantInput">添加参与者</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="participantInput" placeholder="参与者姓名">
+                        <input type="number" id="participantWeight" placeholder="权重" min="1" value="1" style="width: 80px;">
+                        <button class="btn" id="addParticipant" style="width: auto;">添加</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>批量导入</label>
+                    <textarea id="bulkImport" placeholder="每行一个参与者，格式：姓名,权重（可选）"></textarea>
+                    <button class="btn" id="bulkImportBtn" style="margin-top: 10px;">导入</button>
+                </div>
+                <div class="participant-list" id="participantList">
+                    <!-- 参与者会被动态添加到这里 -->
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="useWeight">
+                    <label for="useWeight">启用权重抽奖（权重越高，中奖几率越大）</label>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-secondary" id="resetSettings">重置</button>
+                <button class="btn" id="saveSettings">保存设置</button>
+            </div>
+        </div>
+
+        <div class="tab-content" id="draw">
+            <div class="settings-section">
+                <h2><i class="fas fa-gift"></i> 选择奖项</h2>
+                <div class="form-group">
+                    <select id="prizeSelect">
+                        <option value="">-- 请选择奖项 --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="draw-section">
+                <div class="drum">
+                    <div class="drum-content" id="drumContent">
+                        准备开始
+                    </div>
+                </div>
+                <button class="btn" id="startDraw">开始抽奖</button>
+                <button class="btn btn-secondary" id="stopDraw" style="display: none;">停止抽奖</button>
+
+                <div class="winner-display" id="winnerDisplay">
+                    <h2>恭喜获奖者</h2>
+                    <div class="winner-name" id="winnerName">张三</div>
+                    <div class="winner-title" id="winnerPrize">一等奖 - iPhone 14 Pro</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="history">
+            <div class="settings-section">
+                <h2><i class="fas fa-history"></i> 历史记录</h2>
+                <div id="historyList">
+                    <!-- 历史记录会被动态添加到这里 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
